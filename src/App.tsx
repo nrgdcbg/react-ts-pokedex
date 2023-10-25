@@ -16,7 +16,7 @@ export type Pokemon = {
 
 function App() {
   const pokemonStart: number = 1
-  const pokemonEnd: number = 9
+  const pokemonEnd: number = 151
   const [pokemon, setPokemon] = useState<Pokemon[]>([])
 
   useEffect(() => {
