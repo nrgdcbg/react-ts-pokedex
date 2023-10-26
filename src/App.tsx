@@ -16,7 +16,7 @@ export type Pokemon = {
 
 function App() {
   const pokemonStart: number = 1
-  const pokemonEnd: number = 151
+  const pokemonEnd: number = 9
   const [pokemon, setPokemon] = useState<Pokemon[]>([])
 
   useEffect(() => {
@@ -61,7 +61,10 @@ function App() {
 
   return (
     <>
-      <PokemonTable pokemon = {pokemon}/>
+      <div className = "bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 h-screen flex flex-col items-center justify-center">
+        <h1 className = "text-center text-gray-800 font-sans text-6xl p-4"> Pokedex </h1>
+        <PokemonTable pokemon = {pokemon}/>
+      </div>
     </>
   )
 }

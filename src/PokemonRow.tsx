@@ -7,16 +7,13 @@ type PokemonRowProps = {
 export function PokemonRow( {pokemon}: PokemonRowProps ) {
   return (
     <>
-      {console.log(pokemon)}
-      <td> {pokemon.pokemon} </td>
-      <td> {pokemon.type1} </td>
-      <td> {pokemon.type2 ?? "none"} </td>
-      <td> {pokemon.hp} </td>
-      <td> {pokemon.atk} </td>
-      <td> {pokemon.def} </td>
-      <td> {pokemon.spa} </td>
-      <td> {pokemon.spd} </td>
-      <td> {pokemon.spe} </td>
+      <tr className = "odd:bg-zinc-200 even:bg-white">
+        {Object.keys(pokemon).map(key => {
+          return(
+            <td className = "border-2 border-solid border-zinc-300 text-center p-2" key = {`${pokemon.pokemon}-${key}`}> {pokemon[key as keyof Pokemon] ?? "none"} </td>
+          )
+        })}
+      </tr>
     </>
   )
 }
