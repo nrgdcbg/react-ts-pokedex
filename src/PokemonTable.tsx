@@ -47,12 +47,12 @@ const columns = [
 export function PokemonTable( {pokemon}: PokemonTableProps ) {
   return (
     <>
-      <table className = "border-collapse w-9/12 mx-auto "> 
+      <table className="border-collapse w-9/12 mx-auto my-auto rounded-xl overflow-hidden"> 
         <thead>
-          <tr className = "bg-white">
+          <tr className="bg-black text-white">
             {columns.map(c => {
               return(
-                <th className = "border-2 border-solid border-zinc-200 text-center p-2" key = {c.key}>
+                <th className="text-center p-2" key={c.key}>
                   {c.label}
                 </th>
               )
@@ -62,7 +62,7 @@ export function PokemonTable( {pokemon}: PokemonTableProps ) {
         <tbody>
           {pokemon.map(p => {
             return(
-              <PokemonRow key = {p.pokemon} pokemon = {p} />
+              <PokemonRow key={p.pokemon} pokemon={p} />
             )
           })}
         </tbody>
