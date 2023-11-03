@@ -16,7 +16,7 @@ export type Pokemon = {
 
 function App() {
   const pokemonStart: number = 1
-  const pokemonEnd: number = 151
+  const pokemonEnd: number = 28
   const [pokemon, setPokemon] = useState<Pokemon[]>([])
   const [query, setQuery] = useState<string>("")
 
@@ -60,29 +60,25 @@ function App() {
     getPokemon()
   }, [])
 
-  const search = (pokemon: Pokemon[]): Pokemon[] => {
-    return pokemon.filter((item) => {
-      return (
-        item.pokemon.toLowerCase().includes(query) ||
-        item.type1.toLowerCase().includes(query) ||
-        item.type2.toLowerCase().includes(query)
-      )
-    })
+  const keys: (keyof Pokemon)[] = ["pokemon", "type1", "type2"]
+
+  const search = (pokemon: Pokemon[]) => {
+    return pokemon.filter((item) => 
+      keys.some(key => item[key].toLowerCase().includes(query))
+    )
   }
 
   return (
     <>
-      <div className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 h-screen">
-        <div className = "flex flex-col items-center">
-          <input 
-            type="text" 
-            placeholder="Search Pokemon" 
-            className="my-4 w-1/4 pl-3 rounded-full outline outline-black-600" 
-            onChange={e => setQuery(e.target.value.toLowerCase())}
-          />
-          
-          <PokemonTable pokemon={search(pokemon)}/>
-        </div>
+      <div className = "flex flex-col items-center">
+        <input 
+          type="text" 
+          placeholder="Search Pokemon" 
+          className="my-4 w-1/4 pl-3 rounded-full outline outline-black-600" 
+          onChange={e => setQuery(e.target.value.toLowerCase())}
+        />
+        
+        <PokemonTable pokemon={search(pokemon)}/>
       </div>
     </>
   )
